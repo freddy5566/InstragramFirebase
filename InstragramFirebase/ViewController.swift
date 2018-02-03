@@ -14,7 +14,6 @@ class ViewController: UIViewController {
     private let plusePhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysOriginal), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -24,7 +23,6 @@ class ViewController: UIViewController {
         textField.backgroundColor = UIColor(white: 0, alpha: 0.03)
         textField.borderStyle = .roundedRect
         textField.font = UIFont.systemFont(ofSize: 14)
-        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
@@ -34,7 +32,6 @@ class ViewController: UIViewController {
         textField.backgroundColor = UIColor(white: 0, alpha: 0.03)
         textField.borderStyle = .roundedRect
         textField.font = UIFont.systemFont(ofSize: 14)
-        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
@@ -45,14 +42,13 @@ class ViewController: UIViewController {
         textField.borderStyle = .roundedRect
         textField.font = UIFont.systemFont(ofSize: 14)
         textField.isSecureTextEntry = true
-        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
     private let signUpButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
-        button.backgroundColor = UIColor(red: 149 / 255, green: 204 / 255, blue: 244 / 255, alpha: 1)
+        button.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
         button.layer.cornerRadius = 5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
@@ -74,29 +70,66 @@ class ViewController: UIViewController {
         
         view.addSubview(stackView)
         
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: plusePhotoButton.bottomAnchor, constant: 20),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
-            stackView.heightAnchor.constraint(equalToConstant: 200)
-            ])
+        stackView.anchor(
+            top: plusePhotoButton.bottomAnchor,
+            leading: view.leadingAnchor,
+            bottom: nil,
+            trailing: view.trailingAnchor,
+            padding: .init(top: 20, left: 40, bottom: 0, right: -40),
+            size: .init(width: 0, height: 200)
+        )
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         view.addSubview(plusePhotoButton)
-        
-        plusePhotoButton.heightAnchor.constraint(equalToConstant: 140).isActive = true
-        plusePhotoButton.widthAnchor.constraint(equalToConstant: 140).isActive = true
+  
         plusePhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        plusePhotoButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 40).isActive = true
+        plusePhotoButton.anchor(
+            top: view.topAnchor,
+            leading: view.leadingAnchor,
+            bottom: nil,
+            trailing: nil,
+            padding: .init(top: 40, left: 0, bottom: 0, right: 0),
+            size: .init(width: 140, height: 140)
+        )
         
         setupInputFields()
     }
+}
 
+extension UIView {
     
-
-
+    func anchor(top: NSLayoutYAxisAnchor?, leading: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, trailing: NSLayoutXAxisAnchor?, padding: UIEdgeInsets = .zero, size: CGSize = .zero) {
+        
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        if let top = top {
+            self.topAnchor.constraint(equalTo: top, constant: padding.top).isActive = true
+        }
+        
+        if let leading = leading {
+            self.leadingAnchor.constraint(equalTo: leading, constant: padding.left).isActive = true
+        }
+        
+        if let bottom = bottom {
+            self.bottomAnchor.constraint(equalTo: bottom, constant: padding.bottom).isActive = true
+        }
+        
+        if let trailing = trailing {
+            self.trailingAnchor.constraint(equalTo: trailing, constant: padding.right).isActive = true
+        }
+        
+        if size.height != 0 {
+            self.heightAnchor.constraint(equalToConstant: size.height).isActive = true
+        }
+        
+        if size.width != 0 {
+            self.widthAnchor.constraint(equalToConstant: size.width).isActive = true
+        }
+    }
+    
+    
 }
 
