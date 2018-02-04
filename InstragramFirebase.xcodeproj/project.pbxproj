@@ -13,6 +13,8 @@
 		3BFEE4B8202584B9009398A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BFEE4B6202584B9009398A6 /* LaunchScreen.storyboard */; };
 		3BFEE4C12025D89B009398A6 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFEE4C02025D89B009398A6 /* extensions.swift */; };
 		3BFEE4C32025E59F009398A6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3BFEE4C22025E59F009398A6 /* GoogleService-Info.plist */; };
+		3BFEE4C52026FCF5009398A6 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFEE4C42026FCF5009398A6 /* MainTabBarController.swift */; };
+		3BFEE4C72026FDAF009398A6 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFEE4C62026FDAF009398A6 /* UserProfileController.swift */; };
 		534B55CA546935C05E208A28 /* Pods_InstragramFirebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B4AFA952E879117615A049 /* Pods_InstragramFirebase.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +27,8 @@
 		3BFEE4B9202584B9009398A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BFEE4C02025D89B009398A6 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		3BFEE4C22025E59F009398A6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3BFEE4C42026FCF5009398A6 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		3BFEE4C62026FDAF009398A6 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		6369501C2BDB4C550281E0FA /* Pods-InstragramFirebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstragramFirebase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstragramFirebase/Pods-InstragramFirebase.debug.xcconfig"; sourceTree = "<group>"; };
 		68D228C22BDE54AAF20F38CD /* Pods-InstragramFirebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstragramFirebase.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstragramFirebase/Pods-InstragramFirebase.release.xcconfig"; sourceTree = "<group>"; };
 		B4B4AFA952E879117615A049 /* Pods_InstragramFirebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstragramFirebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,9 +75,11 @@
 		3BFEE4AC202584B9009398A6 /* InstragramFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				3BFEE4C82026FE4D009398A6 /* Model */,
+				3BFEE4CA2026FE5E009398A6 /* Controller */,
+				3BFEE4C92026FE53009398A6 /* View */,
 				3BFEE4BF2025D861009398A6 /* Utilities */,
 				3BFEE4AD202584B9009398A6 /* AppDelegate.swift */,
-				3BFEE4AF202584B9009398A6 /* ViewController.swift */,
 				3BFEE4B4202584B9009398A6 /* Assets.xcassets */,
 				3BFEE4B6202584B9009398A6 /* LaunchScreen.storyboard */,
 				3BFEE4B9202584B9009398A6 /* Info.plist */,
@@ -88,6 +94,30 @@
 				3BFEE4C02025D89B009398A6 /* extensions.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		3BFEE4C82026FE4D009398A6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3BFEE4C92026FE53009398A6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3BFEE4CA2026FE5E009398A6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3BFEE4AF202584B9009398A6 /* ViewController.swift */,
+				3BFEE4C42026FCF5009398A6 /* MainTabBarController.swift */,
+				3BFEE4C62026FDAF009398A6 /* UserProfileController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		4F17C4EA4E457647F2B1C47D /* Pods */ = {
@@ -236,6 +266,8 @@
 			files = (
 				3BFEE4B0202584B9009398A6 /* ViewController.swift in Sources */,
 				3BFEE4AE202584B9009398A6 /* AppDelegate.swift in Sources */,
+				3BFEE4C52026FCF5009398A6 /* MainTabBarController.swift in Sources */,
+				3BFEE4C72026FDAF009398A6 /* UserProfileController.swift in Sources */,
 				3BFEE4C12025D89B009398A6 /* extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

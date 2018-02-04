@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         guard let window = self.window else { fatalError("no windows") }
-        window.rootViewController = ViewController()
+        window.rootViewController = MainTabBarController()
         window.makeKeyAndVisible()
         
         FirebaseApp.configure()
