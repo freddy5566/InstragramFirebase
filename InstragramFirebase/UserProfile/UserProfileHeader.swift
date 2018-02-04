@@ -26,7 +26,7 @@ class UserProfileHeader: UICollectionViewCell {
     private let gridButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "grid"), for: .normal)
-       
+        
         return button
     }()
     
@@ -59,8 +59,8 @@ class UserProfileHeader: UICollectionViewCell {
         
         attrubutedText.append(NSAttributedString(string: "posts",
                                                  attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightGray,
-                                                 NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]
-                                                 ))
+                                                              NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]
+        ))
         label.attributedText = attrubutedText
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -74,7 +74,7 @@ class UserProfileHeader: UICollectionViewCell {
                                                        attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)])
         attrubutedText.append(NSAttributedString(string: "followers",
                                                  attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightGray,
-                                                 NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]
+                                                              NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]
         ))
         label.attributedText = attrubutedText
         label.textAlignment = .center
@@ -89,7 +89,7 @@ class UserProfileHeader: UICollectionViewCell {
                                                        attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)])
         attrubutedText.append(NSAttributedString(string: "followings",
                                                  attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightGray,
-                                                 NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]
+                                                              NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]
         ))
         label.attributedText = attrubutedText
         label.textAlignment = .center
@@ -119,7 +119,7 @@ class UserProfileHeader: UICollectionViewCell {
             padding: .init(top: 12, left: 12, bottom: 0, right: 0),
             size: .init(width: 80, height: 80)
         )
-
+        
         profileImageView.layer.cornerRadius = 40
         profileImageView.layer.masksToBounds = true
         
@@ -228,7 +228,7 @@ class UserProfileHeader: UICollectionViewCell {
             DispatchQueue.main.async {
                 self.profileImageView.image = image
             }
-        }.resume()
+            }.resume()
         
         
     }

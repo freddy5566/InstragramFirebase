@@ -7,12 +7,22 @@
 //
 
 import UIKit
+import Firebase
 
 class MainTabBarController: UITabBarController {
-     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        
+        if Auth.auth().currentUser == nil {
+            DispatchQueue.main.async {
+                let loginController = LoginViewController()
+                let navController = UINavigationController(rootViewController: loginController)
+                self.present(navController, animated: true, completion: nil)
+            }
+            return
+        }
         
         let userProfileController = UserProfileController(collectionViewLayout: UICollectionViewFlowLayout())
         
@@ -20,14 +30,12 @@ class MainTabBarController: UITabBarController {
         
         userProfileNav.tabBarItem.image = #imageLiteral(resourceName: "profile_unselected")
         userProfileNav.tabBarItem.selectedImage = #imageLiteral(resourceName: "profile_selected")
-    
+        
         tabBar.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         
-        viewControllers = [userProfileNav, ViewController()]
+        viewControllers = [userProfileNav, SignUpViewController()]
     }
-    
-    
-    
+
 }
 
 

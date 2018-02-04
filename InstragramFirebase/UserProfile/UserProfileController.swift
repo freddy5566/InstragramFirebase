@@ -13,6 +13,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     
     private let headerID = "headerID"
     private let cellID = "cellID"
+    private var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +25,32 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerID)
         
         collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellID)
+        
+        setupLogOutButton()
     }
     
+    // MARK: -Log Out
+    private func setupLogOutButton() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "gear").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleLogOut))
+    }
+    
+    @objc private func handleLogOut() {
+        let alerController = UIAlertController()
+        
+        alerController.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (_) in
+            do {
+                try Auth.auth().signOut()
+                
+            } catch let sigOutError {
+                print("Failed to sign out:", sigOutError)
+            }
+        }))
+        
+        alerController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alerController, animated: true, completion: nil)
+    }
+    
+    // MARK: - interagrams
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 7
     }
@@ -49,6 +74,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         return 1
     }
     
+    // MARK: -header
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerID, for: indexPath) as! UserProfileHeader
         header.user = user
@@ -60,8 +86,8 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         return CGSize(width: view.frame.width, height: 200)
     }
     
-    private var user: User?
     
+    // MARK: -fetch data
     private func fetchUser() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
