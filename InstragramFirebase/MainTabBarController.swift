@@ -20,9 +20,7 @@ class MainTabBarController: UITabBarController {
         
         userProfileNav.tabBarItem.image = #imageLiteral(resourceName: "profile_unselected")
         userProfileNav.tabBarItem.selectedImage = #imageLiteral(resourceName: "profile_selected")
-        
-        signUpController.tabBarItem.image = 
-        
+    
         tabBar.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         
         viewControllers = [userProfileNav, ViewController()]
