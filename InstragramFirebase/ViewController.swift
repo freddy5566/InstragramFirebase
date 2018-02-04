@@ -9,14 +9,39 @@
 import UIKit
 import Firebase
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     // MARK: - buttons and textfields
-    private let plusePhotoButton: UIButton = {
+    private let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handlePluseButton), for: .touchUpInside)
         return button
     }()
+    
+    @objc private func handlePluseButton() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+            plusPhotoButton.setImage(editedImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+            plusPhotoButton.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        
+        plusPhotoButton.layer.cornerRadius = plusPhotoButton.frame.width / 2
+        plusPhotoButton.layer.masksToBounds = true
+        plusPhotoButton.layer.borderWidth = 3
+        plusPhotoButton.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        
+        dismiss(animated: true, completion: nil)
+    }
     
     private let emailTextField: UITextField = {
        let textField = UITextField()
@@ -49,34 +74,6 @@ class ViewController: UIViewController {
         return textField
     }()
     
-    private let signUpButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Sign Up", for: .normal)
-        button.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
-        button.layer.cornerRadius = 5
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
-        button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
-        button.isEnabled = false
-        return button
-    }()
-    
-    @objc private func handleSignUp() {
-        guard let email = emailTextField.text, email.count > 0 else { return }
-        guard let userName = usernameTextField.text, userName.count > 0 else { return }
-        guard let password = passwordTextField.text, password.count > 0 else { return }
-        
-        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-            
-            if let error = error {
-                print("Failed to create user:", error)
-                return
-            }
-            
-            print("Successfully created user:", user?.uid ?? "")
-            
-        }
-    }
     
     @objc private func handleTextInput() {
         let isFormValid = emailTextField.text?.count ?? 0 > 0 &&
@@ -108,7 +105,7 @@ class ViewController: UIViewController {
         view.addSubview(stackView)
         
         stackView.anchor(
-            top: plusePhotoButton.bottomAnchor,
+            top: plusPhotoButton.bottomAnchor,
             leading: view.leadingAnchor,
             bottom: nil,
             trailing: view.trailingAnchor,
@@ -117,15 +114,74 @@ class ViewController: UIViewController {
         )
     }
     
+    
+    private let signUpButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Sign Up", for: .normal)
+        button.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
+        button.layer.cornerRadius = 5
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
+        button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        button.isEnabled = false
+        return button
+    }()
+    
+    @objc private func handleSignUp() {
+        guard let email = emailTextField.text, email.count > 0 else { return }
+        guard let userName = usernameTextField.text, userName.count > 0 else { return }
+        guard let password = passwordTextField.text, password.count > 0 else { return }
+        
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+            if let error = error {
+                print("Failed to create user:", error)
+                return
+            }
+            
+            print("Successfully created user:", user?.uid ?? "")
+            
+            guard let plusButtonImage = self.plusPhotoButton.imageView?.image else { return }
+            guard let uploadData = UIImageJPEGRepresentation(plusButtonImage, 0.3) else { return }
+            
+            let fileName = NSUUID().uuidString
+            Storage.storage().reference().child("Profile_image").child(fileName).putData(uploadData, metadata: nil) {
+                (metadata, error) in
+                if let error = error {
+                    print("Failed to upload profile image", error)
+                    return
+                }
+                
+                guard let profileImageURL = metadata?.downloadURL()?.absoluteString else { return }
+                
+                print("Successfully uploaded profile image", profileImageURL)
+                
+                guard let uid = user?.uid else { return }
+                
+                let dictionaryValues = ["username": userName, "profileImageURL": profileImageURL]
+                let values = [uid: dictionaryValues]
+                
+                Database.database().reference().child("users").updateChildValues(values) { (error, reference) in
+                    if let error = error {
+                        print("Failed to save user info into database", error)
+                        return
+                    }
+                    
+                    print("Successfully saved user info to database", profileImageURL)
+                }
+            }
+            
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        view.addSubview(plusePhotoButton)
+        view.addSubview(plusPhotoButton)
   
-        plusePhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        plusePhotoButton.anchor(
+        plusPhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        plusPhotoButton.anchor(
             top: view.topAnchor,
-            leading: view.leadingAnchor,
+            leading: nil,
             bottom: nil,
             trailing: nil,
             padding: .init(top: 40, left: 0, bottom: 0, right: 0),
