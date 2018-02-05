@@ -173,6 +173,23 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
     }
     
+    private let alreadyHaveAccountButton: UIButton = {
+        let button = UIButton(type: .system)
+        
+        let attributedString = NSMutableAttributedString(string: "Already have an account?  ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)])
+        
+        attributedString.append(NSAttributedString(string: "Log In", attributes: [NSAttributedStringKey.foregroundColor: UIColor.rgb(red: 17, green: 154, blue: 237), NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)]
+        ))
+        
+        button.setAttributedTitle(attributedString, for: .normal)
+        button.addTarget(self, action: #selector(handleAlreadyHaveAccount), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc private func handleAlreadyHaveAccount() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -189,6 +206,16 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         )
         
         setupInputFields()
+        
+        view.addSubview(alreadyHaveAccountButton)
+        alreadyHaveAccountButton.anchor(
+            top: nil,
+            leading: view.leadingAnchor,
+            bottom: view.bottomAnchor,
+            trailing: view.trailingAnchor,
+            padding: .init(top: 0, left: 0, bottom: 0, right: 0),
+            size: .init(width: 0, height: 50)
+        )
     }
 }
 
