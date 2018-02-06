@@ -167,6 +167,10 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                     }
                     
                     print("Successfully saved user info to database", profileImageURL)
+                    
+                    guard let mainBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+                    mainBarController.setupControllers()
+                    self.dismiss(animated: true, completion: nil)
                 }
             }
             

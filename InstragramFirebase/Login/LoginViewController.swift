@@ -80,7 +80,7 @@ class LoginViewController: UIViewController {
         textField.backgroundColor = UIColor(white: 0, alpha: 0.03)
         textField.borderStyle = .roundedRect
         textField.font = UIFont.systemFont(ofSize: 14)
-        // textField.addTarget(self, action: #selector(handleTextInput), for: .editingChanged)
+        textField.addTarget(self, action: #selector(handleTextInput), for: .editingChanged)
         return textField
     }()
     
@@ -91,9 +91,22 @@ class LoginViewController: UIViewController {
         textField.borderStyle = .roundedRect
         textField.font = UIFont.systemFont(ofSize: 14)
         textField.isSecureTextEntry = true
-        // textField.addTarget(self, action: #selector(handleTextInput), for: .editingChanged)
+        textField.addTarget(self, action: #selector(handleTextInput), for: .editingChanged)
         return textField
     }()
+    
+    @objc private func handleTextInput() {
+        let isFormValid = emailTextField.text?.count ?? 0 > 0 &&
+            passwordTextField.text?.count ?? 0 > 0
+        
+        if isFormValid {
+            logInButton.isEnabled = true
+            logInButton.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+        } else {
+            logInButton.isEnabled = false
+            logInButton.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
+        }
+    }
     
     private let logInButton: UIButton = {
         let button = UIButton(type: .system)
@@ -103,10 +116,28 @@ class LoginViewController: UIViewController {
         button.layer.cornerRadius = 5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
-        // button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleLogIn), for: .touchUpInside)
         button.isEnabled = false
         return button
     }()
+    
+    @objc private func handleLogIn() {
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        Auth.auth().signIn(
+            withEmail: email,
+            password: password) { (user, error) in
+                if let error = error {
+                    print("Failed to sign in: ",error)
+                    return
+                }
+                print("Successfully sign in: ", user?.uid ?? "")
+                
+                guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
+                mainTabBarController.setupControllers()
+                self.dismiss(animated: true, completion: nil)
+        }
+    }
     
     private func setupInputFields() {
         let stackView = UIStackView(
