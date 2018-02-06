@@ -1,14 +1,14 @@
 //
-//  PhotoSelectorCell.swift
+//  PhotoSelectorHeader.swift
 //  InstragramFirebase
 //
-//  Created by jamfly on 2018/2/6.
-//  Copyright © 2018年 jamfly. All rights reserved.
+//  Created by freddy on 06/02/2018.
+//  Copyright © 2018 jamfly. All rights reserved.
 //
 
 import UIKit
 
-class PhotoSelectorCell: UICollectionViewCell {
+class PhotoSelectorHeader: UICollectionViewCell {
     
     var photoImageView: UIImageView = {
         let iv = UIImageView()
@@ -31,7 +31,4 @@ class PhotoSelectorCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-
-    
 }
