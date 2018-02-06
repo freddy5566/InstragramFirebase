@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B660FBF202981AE00596DF6 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B660FBE202981AE00596DF6 /* PhotoSelectorController.swift */; };
 		3BFEE4AE202584B9009398A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFEE4AD202584B9009398A6 /* AppDelegate.swift */; };
 		3BFEE4B0202584B9009398A6 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFEE4AF202584B9009398A6 /* SignUpViewController.swift */; };
 		3BFEE4B5202584B9009398A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BFEE4B4202584B9009398A6 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B660FBE202981AE00596DF6 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		3BFEE4AA202584B9009398A6 /* InstragramFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstragramFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BFEE4AD202584B9009398A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BFEE4AF202584B9009398A6 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +60,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3B660FBD2029817E00596DF6 /* AddPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				3B660FBE202981AE00596DF6 /* PhotoSelectorController.swift */,
+			);
+			path = AddPhoto;
+			sourceTree = "<group>";
+		};
 		3BFEE4A1202584B9009398A6 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +89,7 @@
 		3BFEE4AC202584B9009398A6 /* InstragramFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				3B660FBD2029817E00596DF6 /* AddPhoto */,
 				3BFEE4DD202767D4009398A6 /* Login */,
 				3BFEE4CB20272285009398A6 /* UserProfile */,
 				3BFEE4C42026FCF5009398A6 /* MainTabBarController.swift */,
@@ -269,6 +280,7 @@
 				3BFEE4CD202722A7009398A6 /* UserProfileHeader.swift in Sources */,
 				3BFEE4C72026FDAF009398A6 /* UserProfileController.swift in Sources */,
 				3BFEE4C12025D89B009398A6 /* extensions.swift in Sources */,
+				3B660FBF202981AE00596DF6 /* PhotoSelectorController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

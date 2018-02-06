@@ -9,11 +9,26 @@
 import UIKit
 import Firebase
 
-class MainTabBarController: UITabBarController {
+class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        let index = viewControllers?.index(of: viewController)
+        
+        if index == 2 {
+            let photoController = PhotoSelectorController(collectionViewLayout: UICollectionViewFlowLayout())
+            let photoNav = UINavigationController(rootViewController: photoController)
+            present(photoNav, animated: true, completion: nil)
+
+            return false
+        }
+        return true
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        
+        self.delegate = self
         
         if Auth.auth().currentUser == nil {
             DispatchQueue.main.async {
