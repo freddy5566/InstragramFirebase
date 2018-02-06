@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B660FBF202981AE00596DF6 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B660FBE202981AE00596DF6 /* PhotoSelectorController.swift */; };
+		3B660FC12029A80D00596DF6 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B660FC02029A80D00596DF6 /* PhotoSelectorCell.swift */; };
 		3BFEE4AE202584B9009398A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFEE4AD202584B9009398A6 /* AppDelegate.swift */; };
 		3BFEE4B0202584B9009398A6 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFEE4AF202584B9009398A6 /* SignUpViewController.swift */; };
 		3BFEE4B5202584B9009398A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BFEE4B4202584B9009398A6 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		3B660FBE202981AE00596DF6 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
+		3B660FC02029A80D00596DF6 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		3BFEE4AA202584B9009398A6 /* InstragramFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstragramFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BFEE4AD202584B9009398A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BFEE4AF202584B9009398A6 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				3B660FBE202981AE00596DF6 /* PhotoSelectorController.swift */,
+				3B660FC02029A80D00596DF6 /* PhotoSelectorCell.swift */,
 			);
 			path = AddPhoto;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BFEE4DF20276805009398A6 /* LoginViewController.swift in Sources */,
+				3B660FC12029A80D00596DF6 /* PhotoSelectorCell.swift in Sources */,
 				3BFEE4B0202584B9009398A6 /* SignUpViewController.swift in Sources */,
 				3BFEE4AE202584B9009398A6 /* AppDelegate.swift in Sources */,
 				3BFEE4C52026FCF5009398A6 /* MainTabBarController.swift in Sources */,
