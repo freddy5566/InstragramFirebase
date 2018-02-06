@@ -35,9 +35,12 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     
     private func fetchPhotos() {
         
+<<<<<<< HEAD
         
         
         
+=======
+>>>>>>> 1fe2029f202c61b1961a06cb94ddf379cca5ad49
         let fetchOptions = PHFetchOptions()
         fetchOptions.fetchLimit = 10
         let sorDescripitor = NSSortDescriptor(key: "creationDate", ascending: false)
