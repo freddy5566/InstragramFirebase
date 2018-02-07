@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B31A865202B213B002AE3FA /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31A864202B213B002AE3FA /* Post.swift */; };
+		3B31A867202B21C2002AE3FA /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31A866202B21C2002AE3FA /* UserProfileCell.swift */; };
 		3B660FBF202981AE00596DF6 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B660FBE202981AE00596DF6 /* PhotoSelectorController.swift */; };
 		3B660FC12029A80D00596DF6 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B660FC02029A80D00596DF6 /* PhotoSelectorCell.swift */; };
 		3B71FAB42029F92900D5745E /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B71FAB32029F92900D5745E /* PhotoSelectorHeader.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B31A864202B213B002AE3FA /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		3B31A866202B21C2002AE3FA /* UserProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
 		3B660FBE202981AE00596DF6 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		3B660FC02029A80D00596DF6 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		3B71FAAC2029BBD800D5745E /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +78,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3B31A863202B212A002AE3FA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3B31A864202B213B002AE3FA /* Post.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		3B660FBD2029817E00596DF6 /* AddPhoto */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,11 +118,12 @@
 		3BFEE4AC202584B9009398A6 /* InstragramFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				3BFEE4BF2025D861009398A6 /* Utilities */,
+				3B31A863202B212A002AE3FA /* Model */,
 				3B660FBD2029817E00596DF6 /* AddPhoto */,
 				3BFEE4DD202767D4009398A6 /* Login */,
 				3BFEE4CB20272285009398A6 /* UserProfile */,
 				3BFEE4C42026FCF5009398A6 /* MainTabBarController.swift */,
-				3BFEE4BF2025D861009398A6 /* Utilities */,
 				3BFEE4AD202584B9009398A6 /* AppDelegate.swift */,
 				3BFEE4B4202584B9009398A6 /* Assets.xcassets */,
 				3BFEE4B6202584B9009398A6 /* LaunchScreen.storyboard */,
@@ -133,6 +146,7 @@
 			children = (
 				3BFEE4C62026FDAF009398A6 /* UserProfileController.swift */,
 				3BFEE4CC202722A7009398A6 /* UserProfileHeader.swift */,
+				3B31A866202B21C2002AE3FA /* UserProfileCell.swift */,
 			);
 			path = UserProfile;
 			sourceTree = "<group>";
@@ -293,9 +307,11 @@
 				3B71FAB6202ACE5700D5745E /* SharePhotoController.swift in Sources */,
 				3BFEE4DF20276805009398A6 /* LoginViewController.swift in Sources */,
 				3B660FC12029A80D00596DF6 /* PhotoSelectorCell.swift in Sources */,
+				3B31A865202B213B002AE3FA /* Post.swift in Sources */,
 				3BFEE4B0202584B9009398A6 /* SignUpViewController.swift in Sources */,
 				3BFEE4AE202584B9009398A6 /* AppDelegate.swift in Sources */,
 				3BFEE4C52026FCF5009398A6 /* MainTabBarController.swift in Sources */,
+				3B31A867202B21C2002AE3FA /* UserProfileCell.swift in Sources */,
 				3BFEE4CD202722A7009398A6 /* UserProfileHeader.swift in Sources */,
 				3BFEE4C72026FDAF009398A6 /* UserProfileController.swift in Sources */,
 				3BFEE4C12025D89B009398A6 /* extensions.swift in Sources */,
