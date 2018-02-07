@@ -31,7 +31,7 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
             if state == .authorized {
                 self.fetchPhotos()
             } else if state == .denied {
-                print("deny into photo library")
+                //self.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -40,6 +40,9 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         let selectedImage = photoImages[indexPath.item]
         self.selectedImage = selectedImage
         self.collectionView?.reloadData()
+        
+        let indexPath = IndexPath(item: 0, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
     }
   
     // fetch photos
@@ -110,6 +113,9 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     }
     
     //header
+    
+    private var header: PhotoSelectorHeader?
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         let width = view.frame.width
         return CGSize(width: width, height: width)
@@ -117,11 +123,14 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerID, for: indexPath) as! PhotoSelectorHeader
-        let imageManager = PHImageManager.default()
-        let targetSize = CGSize(width: 600, height: 600)
+        self.header = header
+        
         if let selectedImage = selectedImage {
             if let index = self.photoImages.index(of: selectedImage) {
                 let selectedAsset = self.assets[index]
+                
+                let imageManager = PHImageManager.default()
+                let targetSize = CGSize(width: 600, height: 600)
                 
                 imageManager.requestImage(for: selectedAsset, targetSize: targetSize, contentMode: .default, options: nil, resultHandler: { (image, info) in
                     
@@ -150,6 +159,8 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     }
     
     @objc private func handleNext() {
-        print("next")
+        let shareController = SharePhotoController()
+        shareController.selectedImage = header?.photoImageView.image
+        navigationController?.pushViewController(shareController, animated: true)
     }
 }
