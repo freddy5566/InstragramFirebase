@@ -104,7 +104,7 @@ class SharePhotoController: UIViewController {
         }
     }
     
-    private func saveToDataBaseWithImageURL(with: String) {
+    private func saveToDataBaseWithImageURL(with imageURL: String) {
         guard let postImage = selectedImage else { return }
         guard let caption = textView.text else { return }
         
@@ -113,7 +113,7 @@ class SharePhotoController: UIViewController {
         let userPostRef = Database.database().reference().child("posts").child(uid)
         let ref = userPostRef.childByAutoId()
         
-        let values: [String: Any] = ["imageURL": with, "caption": caption, "imageWidth": postImage.size.width, "imageHeight": postImage.size.height, "creationDate": Date().timeIntervalSince1970]
+        let values: [String: Any] = ["imageURL": imageURL, "caption": caption, "imageWidth": postImage.size.width, "imageHeight": postImage.size.height, "creationDate": Date().timeIntervalSince1970]
         
         ref.updateChildValues(values) { (error, ref) in
             if let error = error {

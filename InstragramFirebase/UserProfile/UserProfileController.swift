@@ -27,27 +27,24 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         collectionView?.register(UserProfileCell.self, forCellWithReuseIdentifier: cellID)
         
         setupLogOutButton()
-        fetchPosts()
+        fetchOrderedPosts()
     }
     
     // MARK: fetch post
     private var posts = [Post]()
     
-    private func fetchPosts() {
+    private func fetchOrderedPosts() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         let ref = Database.database().reference().child("posts").child(uid)
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let dictionaries = snapshot.value as? [String: Any] else { return }
-            dictionaries.forEach({ (ket, value) in
-                guard let dict = value as? [String: Any] else { return }
-                
-                let post = Post(postDic: dict)
-                self.posts.append(post)
-            })
+        ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
+            
+            guard let dictionary = snapshot.value as? [String: Any] else { return }
+            let post = Post(postDic: dictionary)
+            self.posts.append(post)
             self.collectionView?.reloadData()
         }) { (error) in
-            print("Failed to fetch posts:", error)
+            print("Failed to fetch ordered posts:", error)
         }
     }
     
