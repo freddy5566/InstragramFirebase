@@ -15,9 +15,8 @@ class CustomImageView: UIImageView {
     func loadImage(with imageURL: String) {
         print("Loading image...")
         
-        lastURLUsedToLoadImage = imageURL
-        
         guard let url = URL(string: imageURL) else { return }
+        lastURLUsedToLoadImage = imageURL
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
@@ -37,10 +36,11 @@ class CustomImageView: UIImageView {
                 self.image = phpotoImage
             }
             
-        }.resume()
+            }.resume()
     }
     
-    
-    
-    
 }
+    
+    
+    
+

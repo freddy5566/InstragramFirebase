@@ -43,19 +43,13 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     func setupControllers() {
         
-        // profile
-        let profileNavCoontroller = templateNavController(
-            selectedImage: #imageLiteral(resourceName: "profile_selected"),
-            unSelectedImage: #imageLiteral(resourceName: "profile_unselected"),
-            rootController: UserProfileController(collectionViewLayout: UICollectionViewFlowLayout())
-        )
         // home
         let homeNavCoontroller = templateNavController(
             selectedImage: #imageLiteral(resourceName: "home_selected"),
             unSelectedImage: #imageLiteral(resourceName: "home_unselected"),
-            rootController: UserProfileController(collectionViewLayout: UICollectionViewFlowLayout())
+            rootController: HomeController(collectionViewLayout: UICollectionViewFlowLayout())
         )
-        
+
         // search
         let searchNavCoontroller = templateNavController(
             selectedImage: #imageLiteral(resourceName: "search_selected"),
@@ -72,6 +66,13 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         let likeNavCoontroller = templateNavController(
             selectedImage: #imageLiteral(resourceName: "like_selected"),
             unSelectedImage: #imageLiteral(resourceName: "like_unselected")
+        )
+        
+        // profile
+        let profileNavCoontroller = templateNavController(
+            selectedImage: #imageLiteral(resourceName: "profile_selected"),
+            unSelectedImage: #imageLiteral(resourceName: "profile_unselected"),
+            rootController: UserProfileController(collectionViewLayout: UICollectionViewFlowLayout())
         )
         
         tabBar.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
