@@ -55,7 +55,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = view.frame.width
-        return CGSize(width: width, height: width)
+        var height = width
+        height += 40 + 8 + 8 // username
+        height += 50 // actions button
+        height += 60 // posts text
+        return CGSize(width: width, height: height)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
