@@ -15,7 +15,6 @@ class CustomImageView: UIImageView {
     private var lastURLUsedToLoadImage: String?
     
     func loadImage(with imageURL: String) {
-        print("Loading image...")
 
         lastURLUsedToLoadImage = imageURL
         
@@ -23,6 +22,8 @@ class CustomImageView: UIImageView {
             self.image = cachedImage
             return
         }
+        
+        print("Loading image...")
         
         guard let url = URL(string: imageURL) else { return }
         

@@ -77,7 +77,7 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
                             self.selectedImage = image
                         }
                     }
-                    print(count)
+                    
                     if count == allphotos.count - 1 {
                         DispatchQueue.main.async {
                             self.collectionView?.reloadData()

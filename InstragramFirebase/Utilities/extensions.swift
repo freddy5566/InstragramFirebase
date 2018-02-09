@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 extension UIColor {
     
@@ -46,7 +47,21 @@ extension UIView {
             self.widthAnchor.constraint(equalToConstant: size.width).isActive = true
         }
     }
+}
+
+extension Database {
     
-    
+    class func fetchUserWith(uid: String, completion: @escaping (User) -> ()) {
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with:  { (snapeshot) in
+            
+            guard let userDict = snapeshot.value as? [String: Any] else { return }
+ 
+            let user = User(uid: uid, dictionary: userDict)
+            completion(user)
+            
+            }) { (err) in
+                print("Failed to fetch posts:", err)
+            }
+    }
 }
 
