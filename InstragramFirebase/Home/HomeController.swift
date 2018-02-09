@@ -34,23 +34,30 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     private func fetchPosts() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        let ref = Database.database().reference().child("posts").child(uid)
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let dictionaries = snapshot.value as? [String: Any] else { return }
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) { (snapeshot) in
+           
+            guard let userDict = snapeshot.value as? [String: Any] else { return }
             
-            dictionaries.forEach({ (key, value) in
-                guard let dictionary = value as? [String: Any] else { return }
+            let user = User(dictionary: userDict)
+            
+            let ref = Database.database().reference().child("posts").child(uid)
+            
+            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                guard let dictionaries = snapshot.value as? [String: Any] else { return }
                 
-                let post = Post(postDic: dictionary)
-                self.posts.append(post)
-            })
-            
-            self.collectionView?.reloadData()
-            
-        }) { (err) in
-            print("Failed to fetch posts:", err)
+                dictionaries.forEach({ (key, value) in
+                    guard let dictionary = value as? [String: Any] else { return }
+                    let post = Post(user: user, postDic: dictionary)
+                    self.posts.append(post)
+                })
+                
+                self.collectionView?.reloadData()
+                
+            }) { (err) in
+                print("Failed to fetch posts:", err)
+            }
+
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
