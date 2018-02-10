@@ -53,7 +53,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         // search
         let searchNavCoontroller = templateNavController(
             selectedImage: #imageLiteral(resourceName: "search_selected"),
-            unSelectedImage: #imageLiteral(resourceName: "search_unselected")
+            unSelectedImage: #imageLiteral(resourceName: "search_unselected"),
+            rootController: UserSearchController(collectionViewLayout: UICollectionViewFlowLayout())
         )
         
         // pluse

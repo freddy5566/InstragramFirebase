@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		3B31A865202B213B002AE3FA /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31A864202B213B002AE3FA /* Post.swift */; };
 		3B31A867202B21C2002AE3FA /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31A866202B21C2002AE3FA /* UserProfileCell.swift */; };
+		3B390F3F202F20CE00D6B65C /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B390F3E202F20CE00D6B65C /* UserSearchCell.swift */; };
 		3B660FBF202981AE00596DF6 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B660FBE202981AE00596DF6 /* PhotoSelectorController.swift */; };
 		3B660FC12029A80D00596DF6 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B660FC02029A80D00596DF6 /* PhotoSelectorCell.swift */; };
 		3B71FAB42029F92900D5745E /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B71FAB32029F92900D5745E /* PhotoSelectorHeader.swift */; };
 		3B71FAB6202ACE5700D5745E /* SharePhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B71FAB5202ACE5700D5745E /* SharePhotoController.swift */; };
 		3B71FAB8202B549E00D5745E /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B71FAB7202B549E00D5745E /* CustomImageView.swift */; };
 		3B71FABA202D70A400D5745E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B71FAB9202D70A400D5745E /* User.swift */; };
+		3B71FABD202F1B5B00D5745E /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B71FABC202F1B5B00D5745E /* UserSearchController.swift */; };
 		3BB177CD202C113A004615AA /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB177CC202C113A004615AA /* HomeController.swift */; };
 		3BB177CF202C1164004615AA /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB177CE202C1164004615AA /* HomePostCell.swift */; };
 		3BFEE4AE202584B9009398A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFEE4AD202584B9009398A6 /* AppDelegate.swift */; };
@@ -33,6 +35,7 @@
 /* Begin PBXFileReference section */
 		3B31A864202B213B002AE3FA /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		3B31A866202B21C2002AE3FA /* UserProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
+		3B390F3E202F20CE00D6B65C /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
 		3B660FBE202981AE00596DF6 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		3B660FC02029A80D00596DF6 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		3B71FAAC2029BBD800D5745E /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,6 +46,7 @@
 		3B71FAB5202ACE5700D5745E /* SharePhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoController.swift; sourceTree = "<group>"; };
 		3B71FAB7202B549E00D5745E /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		3B71FAB9202D70A400D5745E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3B71FABC202F1B5B00D5745E /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
 		3BB177CC202C113A004615AA /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		3BB177CE202C1164004615AA /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
 		3BFEE4AA202584B9009398A6 /* InstragramFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstragramFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +110,15 @@
 			path = AddPhoto;
 			sourceTree = "<group>";
 		};
+		3B71FABB202F1B3000D5745E /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				3B71FABC202F1B5B00D5745E /* UserSearchController.swift */,
+				3B390F3E202F20CE00D6B65C /* UserSearchCell.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		3BB177CB202C111B004615AA /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +151,7 @@
 			children = (
 				3BFEE4BF2025D861009398A6 /* Utilities */,
 				3B31A863202B212A002AE3FA /* Model */,
+				3B71FABB202F1B3000D5745E /* Search */,
 				3BB177CB202C111B004615AA /* Home */,
 				3B660FBD2029817E00596DF6 /* AddPhoto */,
 				3BFEE4DD202767D4009398A6 /* Login */,
@@ -329,6 +343,7 @@
 				3B660FC12029A80D00596DF6 /* PhotoSelectorCell.swift in Sources */,
 				3B71FAB8202B549E00D5745E /* CustomImageView.swift in Sources */,
 				3B31A865202B213B002AE3FA /* Post.swift in Sources */,
+				3B390F3F202F20CE00D6B65C /* UserSearchCell.swift in Sources */,
 				3BFEE4B0202584B9009398A6 /* SignUpViewController.swift in Sources */,
 				3BFEE4AE202584B9009398A6 /* AppDelegate.swift in Sources */,
 				3B71FABA202D70A400D5745E /* User.swift in Sources */,
@@ -340,6 +355,7 @@
 				3BB177CF202C1164004615AA /* HomePostCell.swift in Sources */,
 				3B71FAB42029F92900D5745E /* PhotoSelectorHeader.swift in Sources */,
 				3B660FBF202981AE00596DF6 /* PhotoSelectorController.swift in Sources */,
+				3B71FABD202F1B5B00D5745E /* UserSearchController.swift in Sources */,
 				3BB177CD202C113A004615AA /* HomeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
