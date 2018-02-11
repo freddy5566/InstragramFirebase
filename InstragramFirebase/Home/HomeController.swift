@@ -21,7 +21,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.register(HomePostCell.self, forCellWithReuseIdentifier: cellID)
         
         setupNavigationItem()
-        fetchPosts()
+        fetchFolloingUsersIds()
     }
     
     private func setupNavigationItem() {
@@ -31,11 +31,29 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     // MARK: -posts
     var posts = [Post]()
     
-    private func fetchPosts() {
+//    private func fetchPosts() {
+//        guard let uid = Auth.auth().currentUser?.uid else { return }
+//
+//        Database.fetchUserWith(uid: uid) { (user) in
+//            self.fetchPostWith(user: user)
+//        }
+//    }
+    
+    private func fetchFolloingUsersIds() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        Database.fetchUserWith(uid: uid) { (user) in
-            self.fetchPostWith(user: user)
+        Database.database().reference().child("following").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let userIdDictonary = snapshot.value as? [String: Any] else { return }
+            
+            userIdDictonary.forEach({ (key, value) in
+                Database.fetchUserWith(uid: key, completion: { (user) in
+                    self.fetchPostWith(user: user)
+                })
+            })
+            
+        }) { (error) in
+            print("Failed to fetch folloing user ids:", error)
         }
     }
     
@@ -50,6 +68,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 let post = Post(user: user, postDic: dictionary)
                 self.posts.append(post)
             })
+            
+            self.posts.sort(by: { (post1, post2) -> Bool in
+                return post1.creationDate .compare(post2.creationDate) == .orderedDescending
+            })
+            
             self.collectionView?.reloadData()
         }) { (error) in
             print("Faoled to fetch posts: ", error)
