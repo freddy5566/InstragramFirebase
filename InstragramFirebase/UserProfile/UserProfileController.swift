@@ -11,8 +11,11 @@ import Firebase
 
 class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    var userId: String?
+    
     private let headerID = "headerID"
     private let cellID = "cellID"
+
     private var user: User?
     
     override func viewDidLoad() {
@@ -27,16 +30,15 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         collectionView?.register(UserProfileCell.self, forCellWithReuseIdentifier: cellID)
         
         setupLogOutButton()
-        fetchOrderedPosts()
     }
     
     // MARK: fetch post
     private var posts = [Post]()
     
     private func fetchOrderedPosts() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        
+        let uid = userId ?? (Auth.auth().currentUser?.uid ?? "")
         let ref = Database.database().reference().child("posts").child(uid)
+        
         ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
             
             guard let dictionary = snapshot.value as? [String: Any] else { return }
@@ -115,12 +117,14 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     
     // MARK: -fetch data
     private func fetchUser() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let uid = userId ?? (Auth.auth().currentUser?.uid ?? "")
         
         Database.fetchUserWith(uid: uid) { (user) in
             self.user = user
             
             self.navigationItem.title = self.user?.username
+            self.fetchOrderedPosts()
             self.collectionView?.reloadData()
         }
         

@@ -30,9 +30,13 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             dictionaries.forEach({ (key, value) in
-                guard let userDic = value as? [String: Any] else { return }
-                let user = User(uid: key, dictionary: userDic)
-                self.users.append(user)
+                
+                if key != Auth.auth().currentUser?.uid {
+                    guard let userDic = value as? [String: Any] else { return }
+                    let user = User(uid: key, dictionary: userDic)
+                    self.users.append(user)
+                }
+        
             })
             self.users.sort(by: { (user1, user2) -> Bool in
                 return user1.username.compare(user2.username) == .orderedAscending
@@ -57,7 +61,7 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         self.collectionView?.reloadData()
 
     }
-    
+    // MARK: -LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView?.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -78,8 +82,14 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         collectionView?.register(UserSearchCell.self, forCellWithReuseIdentifier: cellID)
         
         collectionView?.alwaysBounceVertical = true
+        collectionView?.keyboardDismissMode = .onDrag
         
         fetchUsers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        searchBar.isHidden = false
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -92,6 +102,18 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         cell.user = filteredUsers[indexPath.item]
         
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        searchBar.isHidden = true
+        searchBar.resignFirstResponder()
+        let user = filteredUsers[indexPath.item]
+        
+        let userProfilerControler = UserProfileController(collectionViewLayout: UICollectionViewFlowLayout())
+        userProfilerControler.userId = user.uid
+        navigationController?.pushViewController(userProfilerControler, animated: true)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
