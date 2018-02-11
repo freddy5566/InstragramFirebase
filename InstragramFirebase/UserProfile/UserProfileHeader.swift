@@ -17,7 +17,71 @@ class UserProfileHeader: UICollectionViewCell {
             profileImageView.loadImage(with: profileImageURL)
             
             usernameLabel.text = user?.username
+            setupEditFollowButton()
         }
+    }
+    
+    // MARK: -Follow and Edit Button
+    private func setupEditFollowButton() {
+        guard let currentLoggedInUserId = Auth.auth().currentUser?.uid else { return }
+        guard let userId = user?.uid else { return }
+        
+        if currentLoggedInUserId != userId {
+            let ref = Database.database().reference().child("following").child(currentLoggedInUserId).child(userId)
+            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                if let isFollowing = snapshot.value as? Int, isFollowing == 1 {
+                    self.setupUnfollowStyle()
+                } else {
+                    self.setupFollowStyle()
+                }
+            }, withCancel: { (error) in
+                print("Failed to check if following:", error)
+            })
+            
+            
+        }
+    }
+    
+    @objc private func handleEditProfileFollow() {
+        guard let currentLoggedInUserId = Auth.auth().currentUser?.uid else { return }
+        guard let userId = user?.uid else { return }
+        
+        if editProfileFollowButton.titleLabel?.text == "Unfollow" {
+            Database.database().reference().child("following").child(currentLoggedInUserId).child(userId).removeValue(completionBlock: { (error, ref) in
+                if let error = error {
+                    print("Failed to unfollow user:", error)
+                    return
+                }
+                print("Successfully unfollow user")
+                self.setupFollowStyle()
+            })
+        } else {
+            let ref = Database.database().reference().child("following").child(currentLoggedInUserId)
+            let values = [userId: 1]
+            ref.updateChildValues(values, withCompletionBlock: { (error, ref) in
+                if let error = error {
+                    print("Failed to follow user:", error)
+                    return
+                }
+                
+                print("Successful follow user:", self.user?.username ?? "")
+                self.setupUnfollowStyle()
+            })
+        }
+    }
+    
+    private func setupUnfollowStyle() {
+        
+        editProfileFollowButton.setTitle("Unfollow", for: .normal)
+        editProfileFollowButton.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        editProfileFollowButton.setTitleColor(.black, for: .normal)
+    }
+    
+    private func setupFollowStyle() {
+        editProfileFollowButton.setTitle("Follow", for: .normal)
+        editProfileFollowButton.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+        editProfileFollowButton.setTitleColor(.white, for: .normal)
+        editProfileFollowButton.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
     }
     
     private let profileImageView: CustomImageView = {
@@ -99,7 +163,7 @@ class UserProfileHeader: UICollectionViewCell {
         return label
     }()
     
-    private let editfileButton: UIButton = {
+    lazy private var editProfileFollowButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Edit Profile", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -107,6 +171,7 @@ class UserProfileHeader: UICollectionViewCell {
         button.layer.borderColor = UIColor.lightGray.cgColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 3
+        button.addTarget(self, action: #selector(handleEditProfileFollow), for: .touchUpInside)
         return button
     }()
     
@@ -139,8 +204,8 @@ class UserProfileHeader: UICollectionViewCell {
         
         setupUserStatsView()
         
-        addSubview(editfileButton)
-        editfileButton.anchor(
+        addSubview(editProfileFollowButton)
+        editProfileFollowButton.anchor(
             top: postsLabel.bottomAnchor,
             leading: postsLabel.leadingAnchor,
             bottom: nil,
