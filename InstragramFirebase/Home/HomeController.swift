@@ -13,16 +13,32 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     private let cellID = "cellID"
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: SharePhotoController.updateFeedNotificationName, object: nil)
+        
         collectionView?.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
         collectionView?.register(HomePostCell.self, forCellWithReuseIdentifier: cellID)
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        
         setupNavigationItem()
+        
+        handleRefresh()
+    }
+    
+    @objc private func handleUpdateFeed() {
+        handleRefresh()
+    }
+    
+    @objc private func handleRefresh() {
+        posts.removeAll()
         fetchFolloingUsersIds()
     }
+ 
     
     private func setupNavigationItem() {
         navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo2"))
@@ -31,18 +47,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     // MARK: -posts
     var posts = [Post]()
     
-//    private func fetchPosts() {
-//        guard let uid = Auth.auth().currentUser?.uid else { return }
-//
-//        Database.fetchUserWith(uid: uid) { (user) in
-//            self.fetchPostWith(user: user)
-//        }
-//    }
-    
     private func fetchFolloingUsersIds() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        
         Database.database().reference().child("following").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            self.collectionView?.refreshControl?.endRefreshing()
             
             guard let userIdDictonary = snapshot.value as? [String: Any] else { return }
             
