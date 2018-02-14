@@ -24,6 +24,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        collectionView?.refreshControl = refreshControl
         
         setupNavigationItem()
         
@@ -38,7 +39,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         posts.removeAll()
         fetchFolloingUsersIds()
     }
- 
     
     private func setupNavigationItem() {
         navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo2"))
@@ -51,9 +51,12 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Database.database().reference().child("following").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             
-            self.collectionView?.refreshControl?.endRefreshing()
-            
-            guard let userIdDictonary = snapshot.value as? [String: Any] else { return }
+            guard let userIdDictonary = snapshot.value as? [String: Any] else {
+                self.collectionView?.refreshControl?.endRefreshing()
+                self.collectionView?.reloadData()
+                return
+                
+            }
             
             userIdDictonary.forEach({ (key, value) in
                 Database.fetchUserWith(uid: key, completion: { (user) in
@@ -70,8 +73,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let ref = Database.database().reference().child("posts").child(user.uid)
         
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             
+            self.collectionView?.refreshControl?.endRefreshing()
+        
             dictionaries.forEach({ (key, value) in
                 guard let dictionary = value as? [String: Any] else { return }
                 let post = Post(user: user, postDic: dictionary)
@@ -83,6 +89,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             })
             
             self.collectionView?.reloadData()
+            
         }) { (error) in
             print("Faoled to fetch posts: ", error)
         }
