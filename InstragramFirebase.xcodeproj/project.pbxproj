@@ -17,6 +17,7 @@
 		3B71FAB8202B549E00D5745E /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B71FAB7202B549E00D5745E /* CustomImageView.swift */; };
 		3B71FABA202D70A400D5745E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B71FAB9202D70A400D5745E /* User.swift */; };
 		3B71FABD202F1B5B00D5745E /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B71FABC202F1B5B00D5745E /* UserSearchController.swift */; };
+		3BA71DBF203B1C4700B7534F /* CamaraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA71DBE203B1C4700B7534F /* CamaraController.swift */; };
 		3BB177CD202C113A004615AA /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB177CC202C113A004615AA /* HomeController.swift */; };
 		3BB177CF202C1164004615AA /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB177CE202C1164004615AA /* HomePostCell.swift */; };
 		3BFEE4AE202584B9009398A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFEE4AD202584B9009398A6 /* AppDelegate.swift */; };
@@ -47,6 +48,7 @@
 		3B71FAB7202B549E00D5745E /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		3B71FAB9202D70A400D5745E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3B71FABC202F1B5B00D5745E /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
+		3BA71DBE203B1C4700B7534F /* CamaraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamaraController.swift; sourceTree = "<group>"; };
 		3BB177CC202C113A004615AA /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		3BB177CE202C1164004615AA /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
 		3BFEE4AA202584B9009398A6 /* InstragramFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstragramFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,6 +121,14 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		3BA71DBD203B1B8500B7534F /* Camara */ = {
+			isa = PBXGroup;
+			children = (
+				3BA71DBE203B1C4700B7534F /* CamaraController.swift */,
+			);
+			path = Camara;
+			sourceTree = "<group>";
+		};
 		3BB177CB202C111B004615AA /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +161,7 @@
 			children = (
 				3BFEE4BF2025D861009398A6 /* Utilities */,
 				3B31A863202B212A002AE3FA /* Model */,
+				3BA71DBD203B1B8500B7534F /* Camara */,
 				3B71FABB202F1B3000D5745E /* Search */,
 				3BB177CB202C111B004615AA /* Home */,
 				3B660FBD2029817E00596DF6 /* AddPhoto */,
@@ -344,6 +355,7 @@
 				3B71FAB8202B549E00D5745E /* CustomImageView.swift in Sources */,
 				3B31A865202B213B002AE3FA /* Post.swift in Sources */,
 				3B390F3F202F20CE00D6B65C /* UserSearchCell.swift in Sources */,
+				3BA71DBF203B1C4700B7534F /* CamaraController.swift in Sources */,
 				3BFEE4B0202584B9009398A6 /* SignUpViewController.swift in Sources */,
 				3BFEE4AE202584B9009398A6 /* AppDelegate.swift in Sources */,
 				3B71FABA202D70A400D5745E /* User.swift in Sources */,
