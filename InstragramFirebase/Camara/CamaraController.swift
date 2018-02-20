@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class CamaraController: UIViewController {
+class CamaraController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     private let dismissButton: UIButton = {
         let button = UIButton(type: .system)
@@ -31,7 +31,33 @@ class CamaraController: UIViewController {
     }()
     
     @objc private func handleCapturePhoto() {
-        print("Capturing photo...")
+        
+        #if (!arch(x86_64))
+            guard let previewFormatType = settings.availablePreviewPhotoPixelFormatTypes.first else { return }
+            
+            settings.previewPhotoFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewFormatType]
+            
+            output.capturePhoto(with: settings, delegate: self)
+        #endif
+    }
+    
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        
+        let imageData = photo.fileDataRepresentation()
+        
+        let previewImage = UIImage(data: imageData!)
+        
+        
+        let previewImageView = UIImageView(image: previewImage)
+        view.addSubview(previewImageView)
+        previewImageView.anchor(
+            top: view.topAnchor,
+            leading: view.leadingAnchor,
+            bottom: view.bottomAnchor,
+            trailing: view.trailingAnchor
+        )
+        
+        print("Finish processing photo sample buffer...")
     }
     
     override func viewDidLoad() {
@@ -40,6 +66,8 @@ class CamaraController: UIViewController {
         setupCaptureSession()
         setupHUD()
     }
+    
+    let output = AVCapturePhotoOutput()
     
     private func setupCaptureSession() {
         let captureSession = AVCaptureSession()
@@ -54,7 +82,7 @@ class CamaraController: UIViewController {
             print("Could not setup camera input:", error)
         }
         
-        let output = AVCapturePhotoOutput()
+        
         if captureSession.canAddOutput(output) {
             captureSession.addOutput(output)
         }
