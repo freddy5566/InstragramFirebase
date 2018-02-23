@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B10361E203FFE38005BA7DA /* PreviewPhotoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B10361D203FFE38005BA7DA /* PreviewPhotoContainerView.swift */; };
 		3B31A865202B213B002AE3FA /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31A864202B213B002AE3FA /* Post.swift */; };
 		3B31A867202B21C2002AE3FA /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31A866202B21C2002AE3FA /* UserProfileCell.swift */; };
 		3B390F3F202F20CE00D6B65C /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B390F3E202F20CE00D6B65C /* UserSearchCell.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B10361D203FFE38005BA7DA /* PreviewPhotoContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPhotoContainerView.swift; sourceTree = "<group>"; };
 		3B31A864202B213B002AE3FA /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		3B31A866202B21C2002AE3FA /* UserProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
 		3B390F3E202F20CE00D6B65C /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				3BA71DBE203B1C4700B7534F /* CamaraController.swift */,
+				3B10361D203FFE38005BA7DA /* PreviewPhotoContainerView.swift */,
 			);
 			path = Camara;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 			files = (
 				3B71FAB6202ACE5700D5745E /* SharePhotoController.swift in Sources */,
 				3BFEE4DF20276805009398A6 /* LoginViewController.swift in Sources */,
+				3B10361E203FFE38005BA7DA /* PreviewPhotoContainerView.swift in Sources */,
 				3B660FC12029A80D00596DF6 /* PhotoSelectorCell.swift in Sources */,
 				3B71FAB8202B549E00D5745E /* CustomImageView.swift in Sources */,
 				3B31A865202B213B002AE3FA /* Post.swift in Sources */,
@@ -548,7 +552,6 @@
 					"\"leveldb\"",
 					"-framework",
 					"\"nanopb\"",
-					"-w",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jamfly.InstragramFirebase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -612,7 +615,6 @@
 					"\"leveldb\"",
 					"-framework",
 					"\"nanopb\"",
-					"-w",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jamfly.InstragramFirebase;
 				PRODUCT_NAME = "$(TARGET_NAME)";

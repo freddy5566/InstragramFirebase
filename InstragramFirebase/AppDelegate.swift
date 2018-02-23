@@ -17,14 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        
+
         self.window = UIWindow(frame: UIScreen.main.bounds)
         guard let window = self.window else { fatalError("no windows") }
         window.rootViewController = MainTabBarController()
         window.makeKeyAndVisible()
-    
-        let cache = URLCache(memoryCapacity: 500 * 1024 * 1024, diskCapacity: 500 * 1024 * 1024, diskPath: nil)
-        URLCache.shared = cache
         
         return true
     }

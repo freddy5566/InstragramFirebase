@@ -13,7 +13,7 @@ class CamaraController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     private let dismissButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "right_arrow_shadow"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "right_arrow_shadow").withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
         
         return button
@@ -25,13 +25,16 @@ class CamaraController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     private let capturePhotoButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "capture_photo"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "capture_photo").withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(handleCapturePhoto), for: .touchUpInside)
         return button
     }()
     
     @objc private func handleCapturePhoto() {
         
+        let settings = AVCapturePhotoSettings()
+        
+        // do not execute camera capture for simulator
         #if (!arch(x86_64))
             guard let previewFormatType = settings.availablePreviewPhotoPixelFormatTypes.first else { return }
             
@@ -47,17 +50,25 @@ class CamaraController: UIViewController, AVCapturePhotoCaptureDelegate {
         
         let previewImage = UIImage(data: imageData!)
         
+        let containerView = PreviewPhotoContainerView()
+        containerView.previewImageView.image = previewImage
+        view.addSubview(containerView)
+        containerView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
         
-        let previewImageView = UIImageView(image: previewImage)
-        view.addSubview(previewImageView)
-        previewImageView.anchor(
-            top: view.topAnchor,
-            leading: view.leadingAnchor,
-            bottom: view.bottomAnchor,
-            trailing: view.trailingAnchor
-        )
-        
-        print("Finish processing photo sample buffer...")
+//        let previewImageView = UIImageView(image: previewImage)
+//        view.addSubview(previewImageView)
+//        previewImageView.anchor(
+//            top: view.topAnchor,
+//            leading: view.leadingAnchor,
+//            bottom: view.bottomAnchor,
+//            trailing: view.trailingAnchor
+//        )
+//
+//        print("Finish processing photo sample buffer...")
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     
     override func viewDidLoad() {
@@ -112,7 +123,7 @@ class CamaraController: UIViewController, AVCapturePhotoCaptureDelegate {
             leading: nil,
             bottom: nil,
             trailing: view.trailingAnchor,
-            padding: .init(top: 12, left: 0, bottom: 0, right: 12),
+            padding: .init(top: 12, left: 0, bottom: 0, right: -12),
             size: .init(width: 50, height: 50)
         )
     
