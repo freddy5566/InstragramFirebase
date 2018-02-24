@@ -1,5 +1,5 @@
 //
-//  CamaraController.swift
+//  CameraController.swift
 //  InstragramFirebase
 //
 //  Created by jamfly on 2018/2/19.
@@ -9,8 +9,9 @@
 import UIKit
 import AVFoundation
 
-class CamaraController: UIViewController, AVCapturePhotoCaptureDelegate {
-    
+class CameraController: UIViewController, AVCapturePhotoCaptureDelegate, UIViewControllerTransitioningDelegate {
+
+    // MARK: dismiss and present
     private let dismissButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "right_arrow_shadow").withRenderingMode(.alwaysOriginal), for: .normal)
@@ -29,6 +30,19 @@ class CamaraController: UIViewController, AVCapturePhotoCaptureDelegate {
         button.addTarget(self, action: #selector(handleCapturePhoto), for: .touchUpInside)
         return button
     }()
+    
+    private let customAnimationPresentor = CustomAnimationPresentor()
+    private let customAnimationDismisser = CustomAnimationDissmissor()
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        return customAnimationPresentor
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        return customAnimationDismisser
+    }
     
     @objc private func handleCapturePhoto() {
         
@@ -73,6 +87,8 @@ class CamaraController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        transitioningDelegate = self
         
         setupCaptureSession()
         setupHUD()

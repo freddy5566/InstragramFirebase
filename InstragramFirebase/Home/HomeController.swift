@@ -52,7 +52,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     @objc private func handleCamara() {
-        let camaraCon = CamaraController()
+        let camaraCon = CameraController()
         
         present(camaraCon, animated: true, completion: nil)
     }

@@ -18,7 +18,9 @@
 		3B71FAB8202B549E00D5745E /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B71FAB7202B549E00D5745E /* CustomImageView.swift */; };
 		3B71FABA202D70A400D5745E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B71FAB9202D70A400D5745E /* User.swift */; };
 		3B71FABD202F1B5B00D5745E /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B71FABC202F1B5B00D5745E /* UserSearchController.swift */; };
-		3BA71DBF203B1C4700B7534F /* CamaraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA71DBE203B1C4700B7534F /* CamaraController.swift */; };
+		3B9E21AE2041194F00CE6E10 /* CustomAnimationPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9E21AD2041194F00CE6E10 /* CustomAnimationPresentor.swift */; };
+		3B9E21B02041A42200CE6E10 /* CustomAnimationDissmissor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9E21AF2041A42200CE6E10 /* CustomAnimationDissmissor.swift */; };
+		3BA71DBF203B1C4700B7534F /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA71DBE203B1C4700B7534F /* CameraController.swift */; };
 		3BB177CD202C113A004615AA /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB177CC202C113A004615AA /* HomeController.swift */; };
 		3BB177CF202C1164004615AA /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB177CE202C1164004615AA /* HomePostCell.swift */; };
 		3BFEE4AE202584B9009398A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFEE4AD202584B9009398A6 /* AppDelegate.swift */; };
@@ -50,7 +52,9 @@
 		3B71FAB7202B549E00D5745E /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		3B71FAB9202D70A400D5745E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3B71FABC202F1B5B00D5745E /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
-		3BA71DBE203B1C4700B7534F /* CamaraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamaraController.swift; sourceTree = "<group>"; };
+		3B9E21AD2041194F00CE6E10 /* CustomAnimationPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationPresentor.swift; sourceTree = "<group>"; };
+		3B9E21AF2041A42200CE6E10 /* CustomAnimationDissmissor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationDissmissor.swift; sourceTree = "<group>"; };
+		3BA71DBE203B1C4700B7534F /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		3BB177CC202C113A004615AA /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		3BB177CE202C1164004615AA /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
 		3BFEE4AA202584B9009398A6 /* InstragramFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstragramFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,13 +127,15 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
-		3BA71DBD203B1B8500B7534F /* Camara */ = {
+		3BA71DBD203B1B8500B7534F /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				3BA71DBE203B1C4700B7534F /* CamaraController.swift */,
+				3BA71DBE203B1C4700B7534F /* CameraController.swift */,
 				3B10361D203FFE38005BA7DA /* PreviewPhotoContainerView.swift */,
+				3B9E21AD2041194F00CE6E10 /* CustomAnimationPresentor.swift */,
+				3B9E21AF2041A42200CE6E10 /* CustomAnimationDissmissor.swift */,
 			);
-			path = Camara;
+			path = Camera;
 			sourceTree = "<group>";
 		};
 		3BB177CB202C111B004615AA /* Home */ = {
@@ -164,7 +170,7 @@
 			children = (
 				3BFEE4BF2025D861009398A6 /* Utilities */,
 				3B31A863202B212A002AE3FA /* Model */,
-				3BA71DBD203B1B8500B7534F /* Camara */,
+				3BA71DBD203B1B8500B7534F /* Camera */,
 				3B71FABB202F1B3000D5745E /* Search */,
 				3BB177CB202C111B004615AA /* Home */,
 				3B660FBD2029817E00596DF6 /* AddPhoto */,
@@ -352,6 +358,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B9E21AE2041194F00CE6E10 /* CustomAnimationPresentor.swift in Sources */,
 				3B71FAB6202ACE5700D5745E /* SharePhotoController.swift in Sources */,
 				3BFEE4DF20276805009398A6 /* LoginViewController.swift in Sources */,
 				3B10361E203FFE38005BA7DA /* PreviewPhotoContainerView.swift in Sources */,
@@ -359,7 +366,7 @@
 				3B71FAB8202B549E00D5745E /* CustomImageView.swift in Sources */,
 				3B31A865202B213B002AE3FA /* Post.swift in Sources */,
 				3B390F3F202F20CE00D6B65C /* UserSearchCell.swift in Sources */,
-				3BA71DBF203B1C4700B7534F /* CamaraController.swift in Sources */,
+				3BA71DBF203B1C4700B7534F /* CameraController.swift in Sources */,
 				3BFEE4B0202584B9009398A6 /* SignUpViewController.swift in Sources */,
 				3BFEE4AE202584B9009398A6 /* AppDelegate.swift in Sources */,
 				3B71FABA202D70A400D5745E /* User.swift in Sources */,
@@ -370,6 +377,7 @@
 				3BFEE4C12025D89B009398A6 /* extensions.swift in Sources */,
 				3BB177CF202C1164004615AA /* HomePostCell.swift in Sources */,
 				3B71FAB42029F92900D5745E /* PhotoSelectorHeader.swift in Sources */,
+				3B9E21B02041A42200CE6E10 /* CustomAnimationDissmissor.swift in Sources */,
 				3B660FBF202981AE00596DF6 /* PhotoSelectorController.swift in Sources */,
 				3B71FABD202F1B5B00D5745E /* UserSearchController.swift in Sources */,
 				3BB177CD202C113A004615AA /* HomeController.swift in Sources */,
