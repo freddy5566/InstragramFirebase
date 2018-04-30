@@ -16,12 +16,10 @@ class CommentsController: UICollectionViewController {
         navigationItem.title = "Comments"
         
         collectionView?.backgroundColor = #colorLiteral(red: 0.423529923, green: 0.6870478392, blue: 0.8348321319, alpha: 1)
-        
-        print(inputAccessoryView?.frame)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+        super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
     }
     
@@ -32,9 +30,9 @@ class CommentsController: UICollectionViewController {
     
     var containerView: UIView = {
         let containerView = UIView()
-        containerView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        containerView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         containerView.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
-
+        
         let submitButton = UIButton(type: .system)
         submitButton.setTitle("Submit", for: .normal)
         submitButton.setTitleColor(.black, for: .normal)
@@ -61,21 +59,16 @@ class CommentsController: UICollectionViewController {
             padding: .init(top: 0, left: 12, bottom: 0, right: 0),
             size: .init(width: 0, height: 0)
         )
-
+        
         return containerView
     }()
+    
+    override var inputAccessoryView: UIView? { return containerView }
+    
+    override var canBecomeFirstResponder: Bool { return true }
     
     @objc private func handleSubmit() {
         print("Handling submit")
     }
-    
-    override var inputAccessoryView: UIView? {
-        get {
-            return containerView
-        }
-    }
-    
-    override var canBecomeFirstResponder: Bool {
-        return true
-    }
+ 
 }
