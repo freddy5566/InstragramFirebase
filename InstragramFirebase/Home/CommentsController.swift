@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Firebase
 
 class CommentsController: UICollectionViewController {
+    
+    var post: Post?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +31,7 @@ class CommentsController: UICollectionViewController {
         tabBarController?.tabBar.isHidden = false
     }
     
-    var containerView: UIView = {
+    private lazy var containerView: UIView = {
         let containerView = UIView()
         containerView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         containerView.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
@@ -48,10 +51,8 @@ class CommentsController: UICollectionViewController {
             size: .init(width: 50, height: 0)
         )
 
-        let textFiled = UITextField()
-        textFiled.placeholder = "Enter Comment"
-        containerView.addSubview(textFiled)
-        textFiled.anchor(
+        containerView.addSubview(commentTextField)
+        commentTextField.anchor(
             top: containerView.topAnchor,
             leading: containerView.leadingAnchor,
             bottom: containerView.bottomAnchor,
@@ -63,12 +64,36 @@ class CommentsController: UICollectionViewController {
         return containerView
     }()
     
+    private let commentTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Enter Comment"
+        return textField
+    }()
+    
+    
+    @objc private func handleSubmit() {
+        print("Insert comment: ", commentTextField.text ?? "")
+        print("Inserting comment:", commentTextField.text ?? "")
+        
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let postID = self.post?.id ?? ""
+        let value: [String: Any] = ["text": commentTextField.text ?? "", "currentDate": Date().timeIntervalSince1970, "uid": uid]
+        
+        Database.database().reference().child("comments").child(postID).childByAutoId().updateChildValues(value) { (error, reference) in
+            
+            if let error = error {
+                print("Failed to insert comment:", error)
+                return
+            }
+            print("Successfully insert comment.")
+        }
+        
+        
+    }
+    
     override var inputAccessoryView: UIView? { return containerView }
     
     override var canBecomeFirstResponder: Bool { return true }
     
-    @objc private func handleSubmit() {
-        print("Handling submit")
-    }
  
 }
