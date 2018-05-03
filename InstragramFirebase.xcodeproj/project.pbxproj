@@ -11,6 +11,8 @@
 		3B31A865202B213B002AE3FA /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31A864202B213B002AE3FA /* Post.swift */; };
 		3B31A867202B21C2002AE3FA /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31A866202B21C2002AE3FA /* UserProfileCell.swift */; };
 		3B390F3F202F20CE00D6B65C /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B390F3E202F20CE00D6B65C /* UserSearchCell.swift */; };
+		3B543DC62098300F00C43EFD /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B543DC52098300F00C43EFD /* CommentCell.swift */; };
+		3B543DC82098313800C43EFD /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B543DC72098313800C43EFD /* Comment.swift */; };
 		3B660FBF202981AE00596DF6 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B660FBE202981AE00596DF6 /* PhotoSelectorController.swift */; };
 		3B660FC12029A80D00596DF6 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B660FC02029A80D00596DF6 /* PhotoSelectorCell.swift */; };
 		3B71FAB42029F92900D5745E /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B71FAB32029F92900D5745E /* PhotoSelectorHeader.swift */; };
@@ -42,6 +44,8 @@
 		3B31A864202B213B002AE3FA /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		3B31A866202B21C2002AE3FA /* UserProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
 		3B390F3E202F20CE00D6B65C /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
+		3B543DC52098300F00C43EFD /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		3B543DC72098313800C43EFD /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		3B660FBE202981AE00596DF6 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		3B660FC02029A80D00596DF6 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		3B71FAAC2029BBD800D5745E /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +109,7 @@
 			children = (
 				3B31A864202B213B002AE3FA /* Post.swift */,
 				3B71FAB9202D70A400D5745E /* User.swift */,
+				3B543DC72098313800C43EFD /* Comment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -146,6 +151,7 @@
 				3BB177CC202C113A004615AA /* HomeController.swift */,
 				3BB177CE202C1164004615AA /* HomePostCell.swift */,
 				3B7C61DC2047C73C00586B2B /* CommentsController.swift */,
+				3B543DC52098300F00C43EFD /* CommentCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -366,6 +372,7 @@
 				3BFEE4DF20276805009398A6 /* LoginViewController.swift in Sources */,
 				3B10361E203FFE38005BA7DA /* PreviewPhotoContainerView.swift in Sources */,
 				3B660FC12029A80D00596DF6 /* PhotoSelectorCell.swift in Sources */,
+				3B543DC62098300F00C43EFD /* CommentCell.swift in Sources */,
 				3B7C61DD2047C73C00586B2B /* CommentsController.swift in Sources */,
 				3B71FAB8202B549E00D5745E /* CustomImageView.swift in Sources */,
 				3B31A865202B213B002AE3FA /* Post.swift in Sources */,
@@ -381,6 +388,7 @@
 				3BFEE4C12025D89B009398A6 /* extensions.swift in Sources */,
 				3BB177CF202C1164004615AA /* HomePostCell.swift in Sources */,
 				3B71FAB42029F92900D5745E /* PhotoSelectorHeader.swift in Sources */,
+				3B543DC82098313800C43EFD /* Comment.swift in Sources */,
 				3B9E21B02041A42200CE6E10 /* CustomAnimationDissmissor.swift in Sources */,
 				3B660FBF202981AE00596DF6 /* PhotoSelectorController.swift in Sources */,
 				3B71FABD202F1B5B00D5745E /* UserSearchController.swift in Sources */,

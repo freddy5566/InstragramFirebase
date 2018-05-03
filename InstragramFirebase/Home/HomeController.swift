@@ -42,7 +42,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     private func setupNavigationItem() {
         navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo2"))
-        
+   
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: #imageLiteral(resourceName: "camera3").withRenderingMode(.alwaysOriginal),
             style: .plain,
